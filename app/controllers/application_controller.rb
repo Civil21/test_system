@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   def authenticate_user!
     unless user_signed_in?
       flash_blok('Please log in.', 'error')
-      redirect_to new_user_session_path
+      redirect_to login_path
     end
   end
 end

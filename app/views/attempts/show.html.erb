@@ -1,7 +1,9 @@
-
+<h2>
+Тестування з <%= @attempt.subject.name%>
+</h2>
 <%if @attempt.work?%>
 Закінчить в <%= @attempt.finish_at%>
-Залишилось <%= Time.new(@attempt.finish_at-Time.now).strftime("%H хвилин")%>
+Залишилось <%= ((@attempt.finish_at-Time.now)/60).round(0) %> хвилин
 
 <h3>
   Виберіть правильну відповідь
@@ -12,11 +14,18 @@
 <ul style="decorate: none">
 <% @question.variants.each do |variant| %>
   <li>
-  <%=link_to  variant.name,check_answer_attempt_path(@attempt,question_id: @question_id,variant_id: variant.id),method: :post, class: "btn btn-primary"%>
+  <%=link_to  variant.name,check_answer_attempt_path(@attempt,variant_id: variant.id),method: :post, class: "btn btn-primary"%>
   </li>
 <%end%>
 </ul>
 <%= link_to "Наступне", attempt_path(@attempt)%>
 <%else%>
-Результати та розпочати заново
+<h5>
+  Результати тесту
+</h5>
+<ul>
+  <li><%= @attempt.answers.map{|x|x.variant&.correct}%></li>
+</ul>
+
+<%= link_to "Розпочати тестування", attempts_path(subject_id: @attempt.subject_id), method: :post, class:"btn btn-primary" %>
 <%end%>

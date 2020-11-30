@@ -15,7 +15,7 @@ User.create!([
                  password_confirmation: '12345678',
                  is_admin: 1 },
                { name: 'Dius Olexsandr',
-                 email: 'admin@gamil.com',
+                 email: 'admin@gmail.com',
                  password: '123456qr',
                  password_confirmation: '123456qr',
                  is_admin: 1 }

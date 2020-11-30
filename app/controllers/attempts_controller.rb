@@ -2,8 +2,14 @@
 
 class AttemptsController < ApplicationController
   def show
-    @question = attempt.questions.find_by(params[:question_id]) unless params[:question_id].blank?
-    @question ||= attempt.answers.where(variant_id: nil).first.question
+    answers = attempt.answers.where(variant_id: nil)
+    if answers.count == 0
+      attempt.update(status: 'complete')
+
+    else
+      @question = attempt.questions.find_by(params[:question_id]) unless params[:question_id].blank?
+      @question ||= answers.where(variant_id: nil).first.question
+    end
   end
 
   def new
@@ -13,11 +19,11 @@ class AttemptsController < ApplicationController
   def create
     attempt = Attempt.where(subject_id: params[:subject_id], user: current_user).last
     pp attempt.nil?
-    pp attempt.status
-    pp attempt.complete?
-
-    attempt = attempt.create(subject_id: params[:subject_id], user: current_user) if attempt.nil? || attempt.complete?
-    attempt.status = 0 if attempt.start_at.blank?
+    pp attempt&.complete?
+    pp attempt&.status
+    pp attempt.nil? || attempt.complete?
+    attempt = Attempt.create(subject_id: params[:subject_id], user: current_user) if attempt.nil? || attempt.complete?
+    attempt.status = 'news' if attempt.start_at.blank?
     if attempt.news?
       attempt.subject.questions.order('random()').limit(attempt.subject.questions_size).each do |question|
         answer = attempt.answers.build(question: question)
@@ -38,9 +44,11 @@ class AttemptsController < ApplicationController
   end
 
   def check_answer
-    if attempt.work
-      answer = attempt.answer(question_id: params[question_id])
-      answer.update(variant_id: params[variant_id])
+    if attempt.work?
+      pp attempt.answers
+      question = Variant.find(params[:variant_id]).question
+      answer = attempt.answers.find_by(question_id: question.id)
+      answer.update(variant_id: params[:variant_id])
     else
       flash_blok 'тестування уже завершено', 'eror'
     end
@@ -50,10 +58,10 @@ class AttemptsController < ApplicationController
   private
 
   def attempt
-    @attempt ||= Attempt.find(params[:id])
+    @attempt ||= Attempt.includes(:answers).find(params[:id])
     if @attempt.work?
       unless @attempt.time_left
-        attempt.update(status: 3)
+        @attempt.update(status: 'complete')
         flash_blok 'Тест завершено'
       end
     end
