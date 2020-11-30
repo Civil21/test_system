@@ -21,3 +21,11 @@ export default () => (
     </div>
   </div>
 )
+
+const first = (
+  <div className="container">
+    <h1>Головна сторінка</h1>
+  </div>
+)
+
+ReactDOM.render(element, document.getElementById('main'));
