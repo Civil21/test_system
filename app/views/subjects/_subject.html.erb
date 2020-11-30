@@ -1,12 +1,14 @@
-<div class="card col-11 col-md-3 m-5" style="width: 18rem;">
+<div class="col-12 col-md-4 m-5" style="width: 18rem;">
+  <div class="card ">
   <div class="card-body">
     <h5 class="card-title"><%= subject.name %></h5>
     <ul class="list-group list-group-flush">
-  <li class="list-group-item"><%= subject.questions_size%> питань</li>
-  <li class="list-group-item"><%= subject.time_size%> хв.</li>
-</ul>
+      <li class="list-group-item"><%= subject.questions_size%> питань</li>
+      <li class="list-group-item"><%= subject.time_size%> хв.</li>
+    </ul>
     <p class="card-text"><%= subject.desc %></p>
     <%= link_to "Більше", subject_path(subject.id), class:"card-link"%>
     <%= link_to "Розпочати тестування", attempts_path(subject_id: subject.id), method: :post, class:"card-link" %>
+  </div>
   </div>
 </div>
