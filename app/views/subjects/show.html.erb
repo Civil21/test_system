@@ -1,35 +1,35 @@
-<h2>
-  <%= @subject.name%>
-</h2>
-<b>Кількість запитань</b><%= @subject.questions_size%> <br/>
-<b>Кількість часу: </b> <%= @subject.time_size%> хв.   <br/>
-<%= link_to "Розпочати тестування", attempts_path(subject_id: @subject.id), method: :post, class:"btn btn-primary" %>
-<p><%= @subject.desc%></p>
+<div class="container">
+  <h1 class="text-center my-3"><%= @subject.name%></h1>
+  <b>Кількість запитань:</b> <%= @subject.questions_size%> <br/>
+  <b>Кількість часу: </b> <%= @subject.time_size%> хв.   <br/>
+  <%= link_to "Розпочати тестування", attempts_path(subject_id: @subject.id), method: :post, class:"btn btn-primary mt-2" %>
+  <p class="mt-2"><%= @subject.desc%></p>
 
-<%if @attempts.exists?%>
-Ваші спроби
-<table>
-  <tr>
-    <td>№</td>
-    <td>Кіькість питань</td>
-    <td>Кількість правильних відповідей</td>
-    <td>Кількість балів</td>
-    <td>Час початку</td>
-    <td>Час закінчення</td>
-  </tr>
-  <%@attempts.each_with_index do |attempt,index| %>
-  <tr>
-    <td><%=index+1%></td>
-    <td><%= attempt.answers.count%></td>
-    <td><%= attempt.answers.map{|x| x.variant.correct ? 1 : 0}.sum%></td>
-    <td><%= attempt.point%></td>
-    <td><%= attempt.start_at%></td>
-    <td><%= attempt.finish_at%></td>
-  </tr>
+  <%if @attempts.exists?%>
+  Ваші спроби
+  <table class="table">
+    <tr>
+      <th>№</th>
+      <th>Кіькість питань</th>
+      <th>Кількість правильних відповідей</th>
+      <th>Кількість балів</th>
+      <th>Час початку</th>
+      <th>Час закінчення</th>
+    </tr>
+    <%@attempts.each_with_index do |attempt,index| %>
+    <tr>
+      <td><%=index+1%></td>
+      <td><%= attempt.answers.count%></td>
+      <td><%= attempt.answers.map{|x| x.variant.correct ? 1 : 0}.sum%></td>
+      <td><%= attempt.point%></td>
+      <td><%= attempt.start_at.strftime("%b %Y, %H:%M")%></td>
+      <td><%= attempt.finish_at.strftime("%b %Y, %H:%M")%></td>
+    </tr>
+    <%end%>
+  </table>
   <%end%>
-</table>
-<%end%>
 
-<% if current_user.is_admin?%>
-  <%=render @questions%>
-<%end%>
+  <% if current_user.is_admin?%>
+    <%=render @questions%>
+  <%end%>
+</div>
