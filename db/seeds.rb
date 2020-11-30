@@ -20,4 +20,3 @@ User.create!([
                  password_confirmation: '123456qr',
                  is_admin: 1 }
              ])
-pp User.all

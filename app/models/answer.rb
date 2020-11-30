@@ -5,5 +5,5 @@ class Answer < ApplicationRecord
   has_one :variant # якщо не встигли відповісти то питання без відповіді (без обраного варіанту)
   belongs_to :attempt
 
-  belongs_to :user
+  # belongs_to :user
 end

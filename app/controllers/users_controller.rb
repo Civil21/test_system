@@ -28,6 +28,7 @@ class UsersController < ApplicationController
         log_in user
         user_params[:remember_me] == '1' ? remember(user) : forget(user)
         # render json: { user: user }
+        redirect_to profile_path
       else
         flash_blok 'Неправильний пароль або email', 'error'
         redirect_to login_path

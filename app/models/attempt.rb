@@ -7,7 +7,9 @@ class Attempt < ApplicationRecord
   has_many :answers
   has_many :questions, through: :answers
 
-  enum status: %w[new work complete cancel]
+  # якщо статус змінився на завершено то підрахувати бали
+
+  enum status: %w[news work complete cancel]
 
   def time_left
     Time.now < finish_at

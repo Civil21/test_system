@@ -9,5 +9,9 @@ Rails.application.routes.draw do
   get :profile, to: 'users#show'
   post :import_file, to: 'users#import_file'
   resources :subjects, only: %i[index show]
-  resources :attempts, only: %i[new create show]
+  resources :attempts, only: %i[new create show] do
+    member do
+      post :check_answer
+    end
+  end
 end

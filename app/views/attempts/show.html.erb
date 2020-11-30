@@ -1,7 +1,7 @@
-Саме тестування
-Має бути можливість переходу між тестами (щоб зберігати проміжні результати)
-помітка зрлених та ні
-А також тест з вибором однієї чи декількох правильних
+
+<%if @attempt.work?%>
+Закінчить в <%= @attempt.finish_at%>
+Залишилось <%= Time.new(@attempt.finish_at-Time.now).strftime("%H хвилин")%>
 
 <h3>
   Виберіть правильну відповідь
@@ -9,6 +9,14 @@
 <h2>
   <%= @question.name%>
 </h2>
+<ul style="decorate: none">
 <% @question.variants.each do |variant| %>
-  <%= variant.name%>
+  <li>
+  <%=link_to  variant.name,check_answer_attempt_path(@attempt,question_id: @question_id,variant_id: variant.id),method: :post, class: "btn btn-primary"%>
+  </li>
+<%end%>
+</ul>
+<%= link_to "Наступне", attempt_path(@attempt)%>
+<%else%>
+Результати та розпочати заново
 <%end%>
