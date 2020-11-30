@@ -4,7 +4,7 @@ class AttemptsController < ApplicationController
   def show
     answers = attempt.answers.where(variant_id: nil)
     if answers.count == 0
-      attempt.update(status: 'complete')
+      attempt.update(status: 'complete', finish_at: Time.now)
 
     else
       @question = attempt.questions.find_by(params[:question_id]) unless params[:question_id].blank?
@@ -18,10 +18,6 @@ class AttemptsController < ApplicationController
 
   def create
     attempt = Attempt.where(subject_id: params[:subject_id], user: current_user).last
-    pp attempt.nil?
-    pp attempt&.complete?
-    pp attempt&.status
-    pp attempt.nil? || attempt.complete?
     attempt = Attempt.create(subject_id: params[:subject_id], user: current_user) if attempt.nil? || attempt.complete?
     attempt.status = 'news' if attempt.start_at.blank?
     if attempt.news?
@@ -45,7 +41,6 @@ class AttemptsController < ApplicationController
 
   def check_answer
     if attempt.work?
-      pp attempt.answers
       question = Variant.find(params[:variant_id]).question
       answer = attempt.answers.find_by(question_id: question.id)
       answer.update(variant_id: params[:variant_id])
