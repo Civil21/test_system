@@ -1,0 +1,35 @@
+section{
+  &#why_we{
+    .why-we_card{
+      .icons{
+        max-height: 70px;
+        svg{
+          max-height: 70px;
+        }
+      }
+      .desc{
+        .title{
+          display: block;
+          font-weight: 500;
+          font-size: $big-text;
+          line-height: 25px;
+        }
+        p{
+          text-align: justify;
+        }
+        ul{
+          list-style: none;
+          padding-inline-start: 35px;
+          li::before{
+            content: "⊚";
+            margin-left: -35px;
+            font-weight: bold;
+            font-size: $big-text;
+            padding-right: 10px;
+          }
+        }
+      }
+    }
+
+  }
+}

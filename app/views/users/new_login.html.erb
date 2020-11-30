@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+    <div class="card card-signin my-5">
+      <div class="card-body">
+        <%= link_to root_path do %>
+          Тестова система
+        <% end %>
+        <h5 class="card-title text-center">Вхід</h5>
+        <%= form_for @user, url: login_path do |f| %>
+
+          <div class="form-label-group">
+            <%= f.text_field :email, placeholder: "email" %>
+          </div>
+
+          <div class="form-label-group">
+            <%= f.password_field :password, placeholder: "Пароль" %>
+          </div>
+          <%= f.submit "Війти", class: "btn btn-lg btn-success btn-block text-uppercase" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

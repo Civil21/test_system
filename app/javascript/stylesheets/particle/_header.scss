@@ -1,0 +1,23 @@
+header{
+  min-height: 450px;
+  background: linear-gradient(rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, .5) 100%), url("/header.jpg") no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+  justify-content: center;
+  h1{
+    font-size: 100px;
+    font-weight: 500;
+  }
+}
+
+@media (max-width: 767px) {
+  header{
+    h1{
+      font-size: $head;
+    }
+    h3{
+      font-size: $big-text;
+      font-weight: normal;
+    }
+  }
+}

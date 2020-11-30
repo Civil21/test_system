@@ -1,0 +1,33 @@
+@import "params";
+@import "mixins";
+@import "buttons";
+@import "inputs";
+
+*{
+  scroll-behavior: smooth;
+  font-family: $font;
+  font-size: 16px;
+  a{
+    @include transition();
+    color: $btext;
+    text-decoration: none;
+    &:hover{
+      color: $second-color;
+      text-decoration: none;
+    }
+  }
+  &::selection {
+    background: rgba($second-color, 0.18);
+  }
+  &::-moz-selection {
+    background: rgba($second-color, 0.18);
+  }
+}
+
+.wht{
+  color: $wtext;
+}
+
+.blt{
+  color: $btext;
+}

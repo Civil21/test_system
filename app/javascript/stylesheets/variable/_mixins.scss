@@ -1,0 +1,25 @@
+@mixin transition($time: .5s){
+  -webkit-transition: $time ease-in-out;
+     -moz-transition: $time ease-in-out;
+       -o-transition: $time ease-in-out;
+          transition: $time ease-in-out;
+}
+
+@mixin shadow($hl: 3px, $vl: 4px, $blur: 10px, $color: #000000, $op: 0.25){
+  -webkit-box-shadow: $hl $vl $blur rgba($color, $op);
+     -moz-box-shadow: $hl $vl $blur rgba($color, $op);
+          box-shadow: $hl $vl $blur rgba($color, $op);
+}
+
+@mixin radius($x1: 30px){
+  -webkit-border-radius: $x1;
+     -moz-border-radius: $x1;
+          border-radius: $x1;
+}
+
+@mixin text($font: $font, $size: $text, $weight: 400, $color: $btext){
+  font-family: $font;
+  font-size: $size;
+  color: $color;
+  font-weight: $weight;
+}

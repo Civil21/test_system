@@ -1,0 +1,8 @@
+Профіль користувача
+
+<% if current_user.is_admin%>
+  <%= form_tag import_file_path, method: :post, multipart: true do %>
+    <%= file_field_tag :file %>
+    <%= submit_tag "Імпортувати" %>
+  <% end %>
+<%end%>

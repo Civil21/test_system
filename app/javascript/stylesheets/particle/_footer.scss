@@ -1,0 +1,51 @@
+footer{
+  background-color: $first-color;
+  color: $wtext;
+  hr{
+    background-color: $wtext;
+    opacity: 0.3;
+  }
+
+  a, .footer-link{
+    @include transition;
+    cursor: pointer;
+    color: $wtext;
+    &:hover{
+      color: $accent-color;
+    }
+  }
+
+  .table{
+    border: none;
+    color: $wtext;
+    width: 100%;
+    overflow: hidden;
+    .test{
+      border-top: none;
+    }
+    th{
+      @extend .test;
+      vertical-align: middle;
+      font-size: $second-head;
+      font-weight: 500;
+    }
+    td{
+      @extend .test;
+      vertical-align: middle;
+      font-weight: lighter;
+    }
+  }
+}
+
+@media (max-width: 767px){
+  footer{
+    .table{
+      th{
+        font-size: $text;
+      }
+      td{
+        font-size: $sm-text;
+      }
+    }
+  }
+}
