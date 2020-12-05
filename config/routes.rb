@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   delete :logout, to: 'users#logout'
   get :profile, to: 'users#show'
   post :import_file, to: 'users#import_file'
+  post :change_password, to: 'users#change_password'
+  post :invite, to: 'users#invite'
+
   resources :subjects, only: %i[index show]
   resources :attempts, only: %i[new create show] do
     member do

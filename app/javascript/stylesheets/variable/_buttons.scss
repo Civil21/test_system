@@ -1,30 +1,37 @@
-.btn-test{
-  @include transition();
-  @include radius();
-  border:1px solid rgba($first-color, .55);
+.btn-test {
+  @include transition;
+  @include radius;
+
+  border: 1px solid rgba($first-color, 0.55);
   font-size: $text;
-  &::first-letter{
-    text-transform: uppercase;
+
+  &::first-letter {
+    // text-transform: uppercase;
+ 
   }
-  &:hover{
+
+  &:hover {
     border-color: $second-color;
     background-color: $second-color;
     color: white;
   }
 }
 
-.btn-home{
-  @include transition();
-  @include radius();
-  border:1px solid rgba($first-color, .55);
+.btn-home {
+  @include transition;
+  @include radius;
+
+  border: 1px solid rgba($first-color, 0.55);
   background-color: $first-color;
   color: white;
   font-size: $text;
   font-weight: bold;
-  &::first-letter{
+
+  &::first-letter {
     text-transform: uppercase;
   }
-  &:hover{
+
+  &:hover {
     border-color: $second-color;
     background-color: $second-color;
     color: white;

@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  belongs_to :user, optional: true
+  has_many :attempts
+
   after_create :add_name
   has_secure_password
-
-  has_many :attempts
 
   PASSWORD_FORMAT = /\A
   (?=.{8,20})        # Must contain 8 or more characters and less than 20

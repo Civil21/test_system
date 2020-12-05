@@ -8,6 +8,7 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.string :password_digest
       t.boolean :is_admin, default: false, null: false
       t.datetime :remember_token
+      t.integer :user_id # who invited
 
       t.timestamps
     end

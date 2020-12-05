@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2020_11_30_041013) do
     t.string "password_digest"
     t.boolean "is_admin", default: false, null: false
     t.datetime "remember_token"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

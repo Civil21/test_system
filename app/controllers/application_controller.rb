@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   # respond_to :html, :json
 
   include ApplicationHelper
+  include UsersHelper
 
   def authenticate_user!
     unless user_signed_in?

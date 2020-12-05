@@ -2,20 +2,61 @@
   <h1 class="text-center mt-5 my-3">Профіль користувача</h1>
 
   <% if current_user.is_admin%>
-    <div class="test-card">
+    <div class="test-card card-body mb-3">
       <div class="add_test row justify-content-center align-tems-center">
         <div class="col-12 mt-4">
           <h2 class="test-title text-center">Добавити тест за допомогою таблиці</h2>
         </div>
         <div class="col-12 text-center">
           <%= form_tag import_file_path, method: :post, multipart: true do %>
-            <%= file_field_tag :file %>
-            <div class="mt-4">
-              <%= submit_tag "Імпортувати", class: "btn btn-home" %>
-            </div>
-          <% end %>
-        </div>
+          <%= file_field_tag :file %>
+          <div class="mt-4">
+            <%= submit_tag "Імпортувати", class: "btn btn-home" %>
+          </div>
+        <% end %>
       </div>
     </div>
-  <%end%>
+  </div>
+  <div class="test-card card-body mb-3">
+    <div class="add_test row justify-content-center align-tems-center">
+      <div class="col-12 mt-4">
+        <h2 class="test-title text-center">Запросити нового користувача</h2>
+      </div>
+      <div class="col-12 text-center">
+        <%= form_tag invite_path, method: :post, multipart: true do %>
+        <div class="form-label-group">
+
+          <%= text_field_tag :email %>
+        </div>
+        <div class="mt-4">
+          <%= submit_tag "Запросити", class: "btn btn-home" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<%end%>
+<div class="test-card card-body">
+<div class="add_test row justify-content-center align-tems-center">
+  <div class="col-12 mt-4">
+    <h2 class="test-title text-center">Зміна паролю</h2>
+  </div>
+  <div class="col-12 text-center">
+    <%= form_with model: User.new, url: change_password_path, method: :post, multipart: true do |f|%>
+    <div class="form-label-group">
+      <%= f.password_field :password, placeholder: "Поточний пароль" %>
+    </div>
+    <div class="form-label-group mt-3">
+      <%= f.password_field :new_password, placeholder: "Новий пароль" %>
+    </div>
+    <div class="form-label-group mt-3">
+      <%= f.password_field :new_password_confirmation, placeholder: "Повторіть новий пароль" %>
+    </div>
+    <div class="mt-4">
+      <%= submit_tag "Змінити", class: "btn btn-home" %>
+    </div>
+  <% end %>
+</div>
+</div>
+</div>
 </div>
