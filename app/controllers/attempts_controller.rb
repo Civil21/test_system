@@ -7,8 +7,8 @@ class AttemptsController < ApplicationController
       attempt.update(status: 'complete', finish_at: Time.now)
 
     else
-      @question = attempt.questions.find_by(params[:question_id]) unless params[:question_id].blank?
-      @question ||= answers.where(variant_id: nil).first.question
+      @question = attempt.questions.includes(:variants).find_by(params[:question_id]) unless params[:question_id].blank?
+      @question ||= Question.includes(:variants).find(answers.where(variant_id: nil).first.question_id)
     end
   end
 

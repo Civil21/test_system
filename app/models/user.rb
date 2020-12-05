@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  after_create :add_name
   has_secure_password
 
   has_many :attempts
@@ -20,6 +21,10 @@ class User < ApplicationRecord
   # def validate_password?
   #   (password.present? || password_confirmation.present?) || new_record?
   # end
+
+  def add_name
+    update(name: email.split('@')[0])
+  end
 
   def remember
     update_attribute(:remember_token, new_token)

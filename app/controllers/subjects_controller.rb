@@ -5,8 +5,22 @@ class SubjectsController < ApplicationController
     subject
 
     if user_signed_in?
-      @attempts = current_user.attempts.where(subject: subject)
-      @questions = subject.questions if current_user.is_admin?
+      @attempts = current_user.attempts.where(subject: subject).includes(answers: [:variant])
+      if current_user.is_admin?
+        @questions = subject.questions.includes(:variants)
+        @members = []
+        subject.attempts.group_by(&:user).each do |user, attempts|
+          @members.push(
+            {
+              name: user.name,
+              email: user.email,
+              attempts_count: attempts.count,
+              average_point: attempts.inject(0) { |sum, x| sum + (x.point || 0) } / attempts.size,
+              best_point: attempts.map { |x| x.point || 0 }.max
+            }
+          )
+        end
+      end
     end
   end
 

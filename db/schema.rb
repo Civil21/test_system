@@ -10,71 +10,70 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_30_060131) do
+ActiveRecord::Schema.define(version: 2020_11_30_041013) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "answers", force: :cascade do |t|
-    t.integer "question_id"
-    t.integer "user_id"
+    t.integer "question_id", null: false
     t.integer "variant_id"
-    t.boolean "correct"
-    t.integer "attempt_id"
+    t.boolean "correct", default: false, null: false
+    t.integer "attempt_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "attempts", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "subject_id"
-    t.integer "point"
+    t.integer "user_id", null: false
+    t.integer "subject_id", null: false
+    t.integer "point", default: 0, null: false
     t.datetime "start_at"
     t.datetime "finish_at"
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "status"
   end
 
   create_table "questions", force: :cascade do |t|
-    t.integer "subject_id"
-    t.string "name"
-    t.integer "point"
+    t.integer "subject_id", null: false
+    t.string "name", null: false
+    t.integer "point", default: 1, null: false
+    t.integer "recomend", default: 1, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "recomend"
   end
 
   create_table "sessions", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "token"
+    t.integer "user_id", null: false
+    t.string "token", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "subjects", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.string "desc"
     t.integer "questions_size"
+    t.integer "time_size", default: 15, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "time_size"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.string "email"
+    t.string "email", null: false
     t.string "password_digest"
-    t.boolean "is_admin"
+    t.boolean "is_admin", default: false, null: false
     t.datetime "remember_token"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "variants", force: :cascade do |t|
-    t.integer "question_id"
-    t.string "name"
-    t.boolean "correct"
+    t.integer "question_id", null: false
+    t.string "name", null: false
+    t.boolean "correct", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

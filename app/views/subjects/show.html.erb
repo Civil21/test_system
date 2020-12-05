@@ -20,7 +20,7 @@
     <tr>
       <td><%=index+1%></td>
       <td><%= attempt.answers.count%></td>
-      <td><%= attempt.answers.map{|x| x.variant.correct ? 1 : 0}.sum%></td>
+      <td><%= attempt.answers.map{|x| x.variant&.correct ? 1 : 0}.sum%></td>
       <td><%= attempt.point%></td>
       <td><%= attempt.start_at.strftime("%b %Y, %H:%M")%></td>
       <td><%= attempt.finish_at.strftime("%b %Y, %H:%M")%></td>
@@ -30,6 +30,36 @@
   <%end%>
 
   <% if current_user.is_admin?%>
+  <table class="table">
+    <tr>
+      <td>Ім'я</td>
+      <td>Кількість спроб</td>
+      <td>Найкращий результат</td>
+      <td>Середній результат</td>
+      <td>Почта</td>
+    </tr>
+    <% @members.each do |member|%>
+    <tr>
+      <td>
+        <%= member[:name] %>
+      </td>
+    <td>
+      <%= member[:attempts_count]%>
+    </td>
+    <td>
+      <%= member[:best_point]%>
+    </td>
+    <td>
+      <%= member[:average_point]%>
+    </td>
+    <td>
+      <%= member[:email] %>
+    </td>
+  </tr>
+    <%end%>
+    Count: <%= @members.count%>
+  </table>
+
     <%=render @questions%>
   <%end%>
 </div>

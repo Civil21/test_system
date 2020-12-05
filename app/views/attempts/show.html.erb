@@ -12,7 +12,7 @@
   <%= @question.name%>
 </h2>
 <ul style="decorate: none">
-<% @question.variants.each do |variant| %>
+<% @question.variants.order('random()').each do |variant| %>
   <li>
   <%=link_to  variant.name,check_answer_attempt_path(@attempt,variant_id: variant.id),method: :post, class: "btn btn-primary"%>
   </li>
