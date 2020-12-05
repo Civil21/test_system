@@ -22,8 +22,8 @@
       <td><%= attempt.answers.count%></td>
       <td><%= attempt.answers.map{|x| x.variant&.correct ? 1 : 0}.sum%></td>
       <td><%= attempt.point%></td>
-      <td><%= attempt.start_at.strftime("%b %Y, %H:%M")%></td>
-      <td><%= attempt.finish_at.strftime("%b %Y, %H:%M")%></td>
+      <td><%= attempt.start_at.strftime("%d, %b %Y, %H:%M")%></td>
+      <td><%= attempt.finish_at.strftime("%d, %b %Y, %H:%M")%></td>
     </tr>
     <%end%>
   </table>

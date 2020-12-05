@@ -10,12 +10,12 @@
     <%# javascript_pack_tag 'index' %>
   </head>
   <body>
+    <%= render 'layouts/navbar' %>
     <% while flash = get_flash do %>
     <div class="alert alert-<%=flash.first%>" role="alert">
       <%= flash.last%>
     </div>
     <% end %>
-    <%= render 'layouts/navbar' %>
     <%= yield %>
   </body>
 </html>

@@ -1,29 +1,32 @@
-.btn-bazar{
-  @include radius(60px);
-  width: 250px;
-  padding: 12px;
-  color: $wtext;
-  background-color: $accent-color;
-  text-align: center;
-  font-size: 0.8rem;
-  font-weight: bold;
-  letter-spacing: 0;
-  text-transform: none;
-  line-height: 1.2;
-  background: linear-gradient(to right, $first-color 50%, $accent-color 50%);
-  background-size: 200% 100%;
-  background-position: right bottom;
-  transition: all .5s ease-out;
-  &.alt{
-    border: 2px solid $accent-color;
-    background: linear-gradient(to right, $accent-color 50%, rgba(0,0,0,0) 50%);
-    background-size: 200% 100%;
-    background-position: right bottom;
-    transition: all .5s ease-out;
-    font-weight: 500;
+.btn-test{
+  @include transition();
+  @include radius();
+  border:1px solid rgba($first-color, .55);
+  font-size: $text;
+  &::first-letter{
+    text-transform: uppercase;
   }
   &:hover{
-    background-position: left bottom;
-    color: $wtext;
+    border-color: $second-color;
+    background-color: $second-color;
+    color: white;
+  }
+}
+
+.btn-home{
+  @include transition();
+  @include radius();
+  border:1px solid rgba($first-color, .55);
+  background-color: $first-color;
+  color: white;
+  font-size: $text;
+  font-weight: bold;
+  &::first-letter{
+    text-transform: uppercase;
+  }
+  &:hover{
+    border-color: $second-color;
+    background-color: $second-color;
+    color: white;
   }
 }

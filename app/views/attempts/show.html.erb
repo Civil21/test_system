@@ -1,31 +1,52 @@
-<h2>
-Тестування з <%= @attempt.subject.name%>
-</h2>
-<%if @attempt.work?%>
-Закінчить в <%= @attempt.finish_at%>
-Залишилось <%= ((@attempt.finish_at-Time.now)/60).round(0) %> хвилин
+<div class="container">
+  <div class="test-card mt-5">
+    <div class="test-header d-flex align-items-center justify-content-center">
+      <%if @attempt.work?%>
+        <div class="test_count">
+          1 із 20
+        </div>
+      <%end%>
+      <h1>
+      <span class="d-block">Тестування з дисципліни:</span> <%= @attempt.subject.name%>
+      </h1>
+      <%if @attempt.work?%>
+      <div class="test_time">
+        Залишилось <%= ((@attempt.finish_at-Time.now)/60).round(0) %> хвилин
+      </div>
+      <%end%>
+    </div>
+    <div class="test-body my-3">
+      <%if @attempt.work?%>
+      <h3 class="text-center mb-4">
+        <%= @question.name%>
+      </h3>
+      <ul class="answer_list justify-content-center align-items-center row">
+      <% @question.variants.order('random()').each do |variant| %>
+        <li class="col-12 col-md-6 text-center my-2">
+        <%=link_to  variant.name,check_answer_attempt_path(@attempt,variant_id: variant.id),method: :post, class: "btn btn-test btn-block"%>
+        </li>
+      <%end%>
+      </ul>
+      <div class="d-none">
+        Тестування закінчиться в <b><%= @attempt.finish_at.strftime("%H:%M")%> к.ч</b>
+      </div>
+      <div class="p-3">
+        <%= link_to "<-- Попереднє", attempt_path(@attempt), class:"float-left" %>
+        <%= link_to "Наступне -->", attempt_path(@attempt), class:"float-right" %>
+      </div>
+      <%else%>
+      <h3 class="text-center mb-4">
+        Тест завершено
+      </h3>
+      <h5 class="text-center mb-4">
+        Ваш результат: <span class="test-bal">20 балів</span>
+      </h5>
 
-<h3>
-  Виберіть правильну відповідь
-</h3>
-<h2>
-  <%= @question.name%>
-</h2>
-<ul style="decorate: none">
-<% @question.variants.order('random()').each do |variant| %>
-  <li>
-  <%=link_to  variant.name,check_answer_attempt_path(@attempt,variant_id: variant.id),method: :post, class: "btn btn-primary"%>
-  </li>
-<%end%>
-</ul>
-<%= link_to "Наступне", attempt_path(@attempt)%>
-<%else%>
-<h5>
-  Результати тесту
-</h5>
-<ul>
-  <li><%= @attempt.answers.map{|x|x.variant&.correct}%></li>
-</ul>
+      <div class="text-center">
+        <%= link_to "Повернутись до тестів", subjects_path, class:"btn btn-home mb-4" %>
+      </div>
+      <%end%>
+    </div>
 
-<%= link_to "Розпочати тестування", attempts_path(subject_id: @attempt.subject_id), method: :post, class:"btn btn-primary" %>
-<%end%>
+  </div>
+</div>

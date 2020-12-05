@@ -5,7 +5,7 @@
           transition: $time ease-in-out;
 }
 
-@mixin shadow($hl: 3px, $vl: 4px, $blur: 10px, $color: #000000, $op: 0.25){
+@mixin shadow($hl: 4px, $vl: 4px, $blur: 20px, $color: #000000, $op: 0.25){
   -webkit-box-shadow: $hl $vl $blur rgba($color, $op);
      -moz-box-shadow: $hl $vl $blur rgba($color, $op);
           box-shadow: $hl $vl $blur rgba($color, $op);
