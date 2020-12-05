@@ -1,22 +1,24 @@
-<div class="row">
-  <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-    <div class="card card-signin my-5">
-      <div class="card-body text-center">
-        <%= link_to root_path do %>
-          Тестова система
-        <% end %>
-        <h5 class="card-title text-center">Вхід</h5>
-        <%= form_for @user, url: login_path do |f| %>
+<div class="log_in">
+  <div class="row align-items-center">
+    <div class="col-10 col-md-7 col-lg-6 col-xl-4 mx-auto">
+      <div class="test-card card-signin my-5">
+        <div class="card-body text-center">
+          <%= link_to root_path do %>
+            <h1>Тестова система</h1>
+          <% end %>
+          <h5 class="card-title text-center my-4">Вхід до профілю</h5>
+          <%= form_for @user, url: login_path do |f| %>
 
-          <div class="form-label-group">
-            <%= f.text_field :email, placeholder: "email" %>
-          </div>
+            <div class="form-label-group">
+              <%= f.text_field :email, placeholder: "Електронна пошта" %>
+            </div>
 
-          <div class="form-label-group mt-3">
-            <%= f.password_field :password, placeholder: "Пароль" %>
-          </div>
-          <%= f.submit "Війти", class: "btn btn-lg btn-success btn-block text-uppercase mt-3" %>
-        <% end %>
+            <div class="form-label-group mt-3 mb-4">
+              <%= f.password_field :password, placeholder: "Пароль" %>
+            </div>
+            <%= f.submit "Війти", class: "btn btn-lg btn-home btn-block text-uppercase my-3" %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

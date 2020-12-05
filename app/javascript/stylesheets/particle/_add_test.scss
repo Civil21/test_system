@@ -1,4 +1,19 @@
+.log_in{
+  background-image: url("/2.webp");
+  overflow-x: hidden;
+  .row{
+    width: 100vw;
+    height: 92vh;
+  }
+  .test-card{
+    background-color: white;
+    h1{
+
+      color: $second-color;
+    }
+  }
+}
+
 .add_test{
   min-height: 200px;
-
 }

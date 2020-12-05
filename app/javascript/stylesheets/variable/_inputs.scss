@@ -1,0 +1,12 @@
+input:not([type="submit"]){
+  @include radius();
+  @include transition;
+  height: 45px;
+  width: 100%;
+  padding: 20px;
+  border: 2px solid rgba($first-color, .35);
+  &:focus{
+    outline: none;
+    border: 2px solid rgba($second-color, .85);
+  }
+}
