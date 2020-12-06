@@ -1,65 +1,98 @@
 <div class="container">
-  <h1 class="text-center my-3"><%= @subject.name%></h1>
-  <b>Кількість запитань:</b> <%= @subject.questions_size%> <br/>
-  <b>Кількість часу: </b> <%= @subject.time_size%> хв.   <br/>
-  <%= link_to "Розпочати тестування", attempts_path(subject_id: @subject.id), method: :post, class:"btn btn-primary mt-2" %>
-  <p class="mt-2"><%= @subject.desc%></p>
+  <div class="test-card my-5">
+    <div class="test-header">
+      <div class="w-100">
+        <h1 class="text-center my-4"><%= @subject.name%></h1>
+      </div>
+      <div class="w-100 text-center">
+        <%= link_to "Розпочати тестування", attempts_path(subject_id: @subject.id), method: :post, class:"btn btn-home alt mt-2" %>
+      </div>
 
-  <%if @attempts.exists?%>
-  Ваші спроби
-  <table class="table">
-    <tr>
-      <th>№</th>
-      <th>Кіькість питань</th>
-      <th>Кількість правильних відповідей</th>
-      <th>Кількість балів</th>
-      <th>Час початку</th>
-      <th>Час закінчення</th>
-    </tr>
-    <%@attempts.each_with_index do |attempt,index| %>
-    <tr>
-      <td><%=index+1%></td>
-      <td><%= attempt.answers.count%></td>
-      <td><%= attempt.answers.map{|x| x.variant&.correct ? 1 : 0}.sum%></td>
-      <td><%= attempt.point%></td>
-      <td><%= attempt.start_at.strftime("%d, %b %Y, %H:%M")%></td>
-      <td><%= attempt.finish_at.strftime("%d, %b %Y, %H:%M")%></td>
-    </tr>
-    <%end%>
-  </table>
-  <%end%>
+    </div>
+    <div class="test-body">
+      <b>Кількість запитань:</b> <%= @subject.questions_size%> <br/>
+      <b>Кількість часу: </b> <%= @subject.time_size%> хв.   <br/>
+      <p class="mt-2"><%= @subject.desc%></p>
 
-  <% if current_admin%>
-  <table class="table">
-    <tr>
-      <td>Ім'я</td>
-      <td>Кількість спроб</td>
-      <td>Найкращий результат</td>
-      <td>Середній результат</td>
-      <td>Почта</td>
-    </tr>
-    <% @members.each do |member|%>
-    <tr>
-      <td>
-        <%= member[:name] %>
-      </td>
-    <td>
-      <%= member[:attempts_count]%>
-    </td>
-    <td>
-      <%= member[:best_point]%>
-    </td>
-    <td>
-      <%= member[:average_point]%>
-    </td>
-    <td>
-      <%= member[:email] %>
-    </td>
-  </tr>
-    <%end%>
-    Count: <%= @members.count%>
-  </table>
+      <%if @attempts.exists?%>
+        <h5 class="mt-3">Ваші спроби</h5>
+        <div class="table-responsive mb-3">
+          <table class="table">
+            <tr>
+              <th>№</th>
+              <th>Кіькість питань</th>
+              <th>Кількість правильних відповідей</th>
+              <th>Кількість балів</th>
+              <th>Час початку</th>
+              <th>Час закінчення</th>
+            </tr>
+            <%@attempts.each_with_index do |attempt,index| %>
+            <tr>
+              <td><%=index+1%></td>
+              <td><%= attempt.answers.count%></td>
+              <td><%= attempt.answers.map{|x| x.variant&.correct ? 1 : 0}.sum%></td>
+              <td><%= attempt.point%></td>
+              <td><%= attempt.start_at.strftime("%d, %b %Y, %H:%M")%></td>
+              <td><%= attempt.finish_at.strftime("%d, %b %Y, %H:%M")%></td>
+            </tr>
+            <%end%>
+          </table>
+        </div>
+      <%end%>
 
-    <%=render @questions%>
-  <%end%>
+      <% if current_admin%>
+        <h5>Кількість: <%= @members.count%></h5>
+        <div class="table-responsive mb-3">
+          <table class="table">
+            <tr>
+              <th>Ім'я</th>
+              <th>Кількість спроб</th>
+              <th>Найкращий результат</th>
+              <th>Середній результат</th>
+              <th>Почта</th>
+            </tr>
+            <% @members.each do |member|%>
+            <tr>
+              <td>
+                <%= member[:name] %>
+              </td>
+            <td>
+              <%= member[:attempts_count]%>
+            </td>
+            <td>
+              <%= member[:best_point]%>
+            </td>
+            <td>
+              <%= member[:average_point]%>
+            </td>
+            <td>
+              <%= member[:email] %>
+            </td>
+          </tr>
+            <%end%>
+          </table>
+        </div>
+
+              <h5 class="mb-4 text-center">
+                <button class="btn btn-test collapsed" id="stat" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                  Статистика по питанням
+                </button>
+              </h5>
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#stat">
+              <div class="table-responsive mb-3">
+                <table class="table">
+                  <tr>
+                    <th>Питання</th>
+                    <th>Рейтинг</th>
+                    <th>Кількість спроб</th>
+                    <th>Успішність</th>
+                  </tr>
+                  <%=render @questions%>
+                </table>
+              </div>
+            </div>
+
+      <%end%>
+    </div>
+  </div>
 </div>

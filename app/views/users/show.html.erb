@@ -2,7 +2,7 @@
   <h1 class="text-center mt-5 my-3">Профіль користувача</h1>
 
   <% if current_user.is_admin%>
-    <div class="test-card card-body mb-3">
+    <div class="test-card card-body mb-4">
       <div class="add_test row justify-content-center align-tems-center">
         <div class="col-12 mt-4">
           <h2 class="test-title text-center">Добавити тест за допомогою таблиці</h2>
@@ -17,7 +17,7 @@
       </div>
     </div>
   </div>
-  <div class="test-card card-body mb-3">
+  <div class="test-card card-body mb-4">
     <div class="add_test row justify-content-center align-tems-center">
       <div class="col-12 mt-4">
         <h2 class="test-title text-center">Запросити нового користувача</h2>
@@ -26,9 +26,13 @@
         <%= form_tag invite_path, method: :post, multipart: true do %>
         <div class="form-label-group">
 
-          <%= text_field_tag :email %>
+          <%= text_field_tag :email, "", placeholder: "Введіть електронну пошту користувача" %>
+          <div class="text-left d-block mt-3 mb-2">
+            <%= check_box_tag :is_admin, class: "custom-checkbox"%>
+            <label for="is_admin">Права викладача</label>
+          </div>
         </div>
-        <div class="mt-4">
+        <div class="mb-3">
           <%= submit_tag "Запросити", class: "btn btn-home" %>
         </div>
       <% end %>
@@ -36,7 +40,7 @@
   </div>
 </div>
 <%end%>
-<div class="test-card card-body">
+<div class="test-card card-body mb-4">
 <div class="add_test row justify-content-center align-tems-center">
   <div class="col-12 mt-4">
     <h2 class="test-title text-center">Зміна паролю</h2>

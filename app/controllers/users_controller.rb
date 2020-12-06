@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
   def invite
     if current_admin
-      new_user = User.create(user_id: user.id, email: params[:email], password: '123456qr', password_confirmation: '123456qr')
+      new_user = User.create(user_id: user.id, email: params[:email], password: '123456qr', password_confirmation: '123456qr', is_admin: params[:is_admin] || false)
       # надсилати запрошення?
       flash_blok "Користувач #{new_user.email} успішно запрошений. Пароль для першого входу 123456qr"
       redirect_to profile_path
@@ -72,7 +72,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :password, :new_password, :new_password_confirmation)
+    params.require(:user).permit(:email, :password, :new_password, :new_password_confirmation, :is_admin)
   end
 
   def user

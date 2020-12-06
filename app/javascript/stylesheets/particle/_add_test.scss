@@ -16,4 +16,15 @@
 
 .add_test{
   min-height: 200px;
+  h2{
+    font-weight: bold;
+  }
+}
+
+@media (max-width: 767px){
+  .add_test{
+    h2{
+      font-size: $big-text;
+    }
+  }
 }

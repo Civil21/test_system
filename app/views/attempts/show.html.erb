@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="test-card mt-5">
+  <div class="test-card my-5">
     <div class="test-header d-flex align-items-center justify-content-center">
       <%if @attempt.work?%>
         <div class="test_count">
@@ -39,7 +39,7 @@
         Тест завершено
       </h3>
       <h5 class="text-center mb-4">
-        Ваш результат: <span class="test-bal">20 балів</span>
+        Ваш результат: <span class="test-bal"><%= @attempt.point%> з <%= @attempt.answers.count %></span>
       </h5>
 
       <div class="text-center">

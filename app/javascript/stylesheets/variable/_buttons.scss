@@ -5,12 +5,14 @@
   border: 1px solid rgba($first-color, 0.55);
   font-size: $text;
 
-  &::first-letter {
-    // text-transform: uppercase;
- 
-  }
 
   &:hover {
+    border-color: $second-color;
+    background-color: $second-color;
+    color: white;
+  }
+
+  &[aria-expanded="true"]{
     border-color: $second-color;
     background-color: $second-color;
     color: white;
@@ -36,4 +38,14 @@
     background-color: $second-color;
     color: white;
   }
+
+  &.alt{
+    border-color: $second-color;
+    background-color: $second-color;
+    &:hover{
+      border: 1px solid rgba($first-color, 0.55);
+      background-color: $first-color;
+    }
+  }
+
 }

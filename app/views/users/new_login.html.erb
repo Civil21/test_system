@@ -16,11 +16,11 @@
             <div class="form-label-group mt-3 mb-4">
               <%= f.password_field :password, placeholder: "Пароль" %>
             </div>
-            <div class="form-label-group mt-3 mb-4">
-                <label>
-                  <%= check_box_tag :remember_me, '' %>
-                  <small class="d-flex align-items-center">Запам'ятати мене</small>
-                </label>
+            <div class="form-label-group mb-3 float-left">
+
+                  <%= check_box_tag :remember_me, class:"custom-checkbox" %>
+
+                <label for="remember_me">Запам'ятати мене</label>
             </div>
             <%= f.submit "Війти", class: "btn btn-lg btn-home btn-block text-uppercase my-3" %>
           <% end %>
