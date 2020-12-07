@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class AttemptsController < ApplicationController
+  before_action :authenticate_user!
   def show
     @answers_all = attempt.answers.count
     answers = attempt.answers.where(variant_id: nil)

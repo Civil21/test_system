@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class SubjectsController < ApplicationController
+  before_action :authenticate_user!
   def show
     if user_signed_in?
       @attempts = current_user.attempts.where(subject: subject).includes(answers: [:variant])
