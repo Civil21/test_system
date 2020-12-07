@@ -1,6 +1,6 @@
-<tr>
+<tr style="color:white; background-color: <% if question.складне? %> red <%elsif question.просте?%> green <%else%> grey <%end%>">
   <td><%= question.name %></td>
-  <td>5</td>
-  <td>100</td>
-  <td>100</td>
+  <td><%= question.recomend%></td>
+  <td><%= question.answers.size%></td>
+  <td><%= question.correct_answers%></td>
 </tr>

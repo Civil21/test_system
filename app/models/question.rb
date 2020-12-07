@@ -3,6 +3,21 @@
 class Question < ApplicationRecord
   belongs_to :subject
   has_many :variants
+  has_many :answers
+
+  enum recomend: %w[непровірене складне звичайне просте]
+
+  def count_correct
+    self.correct_answers = answers.includes(:variant).map { |x| x.variant&.correct ? 1 : 0 }.sum
+    self.recomend = if correct_answers < answers.size * 0.35
+                      1
+                    elsif correct_answers < answers.size * 0.65
+                      2
+                    else
+                      3
+                    end
+    save
+  end
 
   def self.import(file)
     spreadsheet = open_spreadsheet(file)

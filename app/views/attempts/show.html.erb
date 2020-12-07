@@ -3,7 +3,7 @@
     <div class="test-header d-flex align-items-center justify-content-center">
       <%if @attempt.work?%>
         <div class="test_count">
-          1 із 20
+          <%= @answers_all-@answers_count+1%> із <%= @answers_all%>
         </div>
       <%end%>
       <h1>

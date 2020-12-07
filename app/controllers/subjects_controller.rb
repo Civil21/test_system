@@ -2,12 +2,10 @@
 
 class SubjectsController < ApplicationController
   def show
-    subject
-
     if user_signed_in?
       @attempts = current_user.attempts.where(subject: subject).includes(answers: [:variant])
       if current_user.is_admin?
-        @questions = subject.questions.includes(:variants)
+        @questions = subject.questions.includes(:variants, :answers)
         @members = []
         subject.attempts.group_by(&:user).each do |user, attempts|
           @members.push(

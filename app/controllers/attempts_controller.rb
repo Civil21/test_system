@@ -2,8 +2,10 @@
 
 class AttemptsController < ApplicationController
   def show
+    @answers_all = attempt.answers.count
     answers = attempt.answers.where(variant_id: nil)
-    if answers.count == 0
+    @answers_count = answers.count
+    if @answers_count == 0
       attempt.update(status: 'complete', finish_at: Time.now)
 
     else

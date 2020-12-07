@@ -9,8 +9,6 @@ class Attempt < ApplicationRecord
   has_many :answers
   has_many :questions, through: :answers
 
-  # якщо статус змінився на завершено то підрахувати бали
-
   enum status: %w[news work complete cancel]
 
   def time_left
@@ -23,6 +21,7 @@ class Attempt < ApplicationRecord
     pp status_change
     if status_changed? && status_change[1] == 'complete'
       self.point = answers.includes(:variant).map { |x| x.variant&.correct ? 1 : 0 }.sum
+      answers.each { |answer| answer.question.count_correct }
     end
   end
 end
