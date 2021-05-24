@@ -4,7 +4,7 @@
       <div class="test-card card-signin my-5">
         <div class="card-body text-center">
           <%= link_to root_path do %>
-            <h1>Тестова система</h1>
+            <h1>Система обліку знань</h1>
           <% end %>
           <h5 class="card-title text-center my-4">Вхід до профілю</h5>
           <%= form_for @user, url: login_path do |f| %>
@@ -23,6 +23,7 @@
                 <label for="remember_me">Запам'ятати мене</label>
             </div>
             <%= f.submit "Війти", class: "btn btn-lg btn-home btn-block text-uppercase my-3" %>
+            <small style="color:red;">*-логін і пароль видається адміністратором сайту</small>
           <% end %>
         </div>
       </div>

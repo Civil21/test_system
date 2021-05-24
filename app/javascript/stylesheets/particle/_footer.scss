@@ -1,6 +1,12 @@
 footer{
   background-color: $first-color;
   color: $wtext;
+  .footer_content{
+    min-height: 250px;
+    .navbar-brand{
+      font-size: 1.5rem;
+    }
+  }
   hr{
     background-color: $wtext;
     opacity: 0.3;
@@ -11,7 +17,7 @@ footer{
     cursor: pointer;
     color: $wtext;
     &:hover{
-      color: $accent-color;
+      color: $second-color;
     }
   }
 

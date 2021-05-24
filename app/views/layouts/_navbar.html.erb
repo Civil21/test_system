@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg py-3">
   <div class="container">
-  <%= link_to root_path, class:"navbar-brand wht" do%>Система тестування<%end%>
+  <%= link_to root_path, class:"navbar-brand wht" do%>СОЗ(<small>система обліку знань</small>)<%end%>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
     <span class="icon-bar top-bar"></span>
     <span class="icon-bar middle-bar"></span>
@@ -10,20 +10,20 @@
   <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item">
-        <%= link_to subjects_path, class:"nav-link wht" do%>Теми<%end%>
+        <%= link_to subjects_path, class:"nav-link wht" do%>Розділи<%end%>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
       <% if current_user.blank?%>
       <li class="nav-item">
-        <%= link_to login_path, class:"nav-link wht" do %>Вхід<%end%>
+        <%= link_to login_path, class:"btn btn-test alt" do %>Вхід<%end%>
       </li>
       <%else%>
       <li class="nav-item">
         <%= link_to profile_path, class:"nav-link wht" do %>Профіль<%end%>
       </li>
       <li class="nav-item">
-        <%= link_to logout_path,method: :delete, class:"nav-link wht" do %>Вийти<%end%>
+        <%= link_to logout_path,method: :delete, class:"btn btn-test alt" do %>Вийти<%end%>
       </li>
       <%end%>
     </ul>

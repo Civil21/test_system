@@ -9,12 +9,12 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.create!([
-               { name: 'Julian',
+               { name: 'Sviehaper',
                  email: 'test@test.com',
                  password: '12345678',
                  password_confirmation: '12345678',
                  is_admin: 1 },
-               { name: 'Dius Olexsandr',
+               { name: 'Petro Ivanow',
                  email: 'admin@gmail.com',
                  password: '123456qr',
                  password_confirmation: '123456qr',
