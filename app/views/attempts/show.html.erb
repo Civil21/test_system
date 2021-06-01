@@ -31,8 +31,8 @@
         Тестування закінчиться в <b><%= @attempt.finish_at.strftime("%H:%M")%> к.ч</b>
       </div>
       <div class="p-3">
-        <%= link_to "<-- Попереднє", attempt_path(@attempt), class:"float-left" %>
-        <%= link_to "Наступне -->", attempt_path(@attempt), class:"float-right" %>
+        <%# link_to "<-- Попереднє", attempt_path(@attempt), class:"float-left" %>
+        <%# link_to "Наступне -->", attempt_path(@attempt), class:"float-right" %>
       </div>
       <%else%>
       <h3 class="text-center mb-4">
